@@ -43,7 +43,7 @@ This document aims to serve as a guide for simple data analysis, for
 Physics, in \texttt{Python, Numpy and Matplotlib}.  
 
 \section{Quick start: Plotting a simple graph}
-\subsection{Importing the data}
+\subsection{Importing the data from a file}
 Firstly, one must open a blank .py file in a suitable editor (GNU
 Emacs, Sublime Text 3, etc).
 
@@ -93,6 +93,32 @@ this way, or manufactured as a single Numpy array in Python, will be a
   x_data = data[:, 0]
   # second column
   y_data = data[:, 1]
+\end{lstlisting}
+
+\subsection{Generating the data from a functional form}
+If you instead do not have data, but wish to plot a graph of a
+function of $x$, this is also simple to achieve. However, it must be
+noted that Numpy is not a symbolic library in that it doesn't
+interpret mathematical notation in the same way as
+\texttt{Mathematica} or \texttt{Sympy}, (another Python library). One
+must generate an array of the numeric data to be plotted.
+
+Consider the example of plotting a simple sine curve over the range of
+$-\pi$ to $\pi$. First, one generates the $x$ data using
+\texttt{linspace}.
+
+\begin{lstlisting}
+  x_data = np.linspace(-np.pi, np.pi, 100) 
+\end{lstlisting}
+
+where the $100$ refers to the number of values in the array. Higher
+values lead to smoother curves. Then, one transforms the $x$ data to
+get the desired $y$ data. Numpy arrays can be used in nearly all Numpy
+functions instead of a single value, leading to an incredibly easy
+transformation.
+
+\begin{lstlisting}
+  y_data = np.sin(x_data)
 \end{lstlisting}
 
 \subsection{Rendering the simple plot}
@@ -314,5 +340,10 @@ a single, completely invalid, Python statement!
 \begin{lstlisting}
   data = np.loadtxt('mydata.csv', delimiter=',') 
 \end{lstlisting}
+
+You may also need to include the \texttt{skiprows} named argument, if
+you have included column headers in your data. Else, you will get a
+\texttt{ValueError} as Python attempts to cast English words to floats
+with disasterous results.
 
 \end{document}
