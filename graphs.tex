@@ -228,12 +228,15 @@ errors, one per each parameter of the fit, one can take the diagonal
 elements of the square-rooted matrix.
 
 \begin{lstlisting}
-  np.diag(np.sqrt(pcov))
+  errors = np.diag(np.sqrt(pcov))
 \end{lstlisting}
 
 To plot this fit onto the graph, one can use the simple plotting tools
 as covered before, using \texttt{linspace} to generate the range of
-x\_data.
+$x\_data$. This $x\_range$ is an array of values interpolated between
+the minimum and maximum values in the $x$ data. This allows for smooth
+plotting of the regression line in the case where the fit is
+non-linear.
 
 \begin{lstlisting}  
   popt, pcov = curve_fit(func, x_data, y_data)
